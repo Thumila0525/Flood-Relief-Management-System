@@ -37,6 +37,26 @@ function getAuthUser($pdo) {
         exit;
     }
 
+    $token = substr($auth, 7);
+    
+    $decoded = base64_decode($token);
+    $data = json_decode($decoded, true);
+
+    if (!$data || !isset($data['user_id'])) {
+        http_response_code(401);
+        echo json_encode(["success" => false, "message" => "Invalid token"]);
+        exit;
+    }
+
+    // Admin login
+    if ($data['user_id'] === 0) {
+        return [
+            'id'        => 0,
+            'full_name' => 'Administrator',
+            'email'     => 'admin@system',
+            'role'      => 'admin'
+        ];
+    }
 
 
 
