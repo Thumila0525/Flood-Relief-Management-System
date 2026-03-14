@@ -8,7 +8,20 @@ requireAdmin($pdo);
 $district    = $_GET['district'] ?? '';
 $relief_type = $_GET['relief_type'] ?? '';
 
+// Build base WHERE clause from filters
+$where = [];
+$params = [];
 
+if ($district) {
+    $where[] = "district = ?";
+    $params[] = $district;
+}
+if ($relief_type) {
+    $where[] = "relief_type = ?";
+    $params[] = $relief_type;
+}
+
+$whereSQL = count($where) ? "WHERE " . implode(" AND ", $where) : "";
 
 
 ?>
