@@ -121,3 +121,19 @@ function displayStats(stats) {
     document.getElementById('medicineRequests').textContent = stats.medicine_requests || 0;
     document.getElementById('shelterRequests').textContent = stats.shelter_requests || 0;
 }
+// Apply filters
+function applyFilters() {
+    const filters = {};
+    const district = document.getElementById('filterDistrict').value;
+    const reliefType = document.getElementById('filterType').value;
+    if (district) filters.district = district;
+    if (reliefType) filters.relief_type = reliefType;
+    loadStats(filters);
+}
+
+// Reset filters
+function resetFilters() {
+    document.getElementById('filterDistrict').value = '';
+    document.getElementById('filterType').value = '';
+    loadStats();
+}
