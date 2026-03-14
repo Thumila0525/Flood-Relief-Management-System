@@ -90,3 +90,34 @@ document.addEventListener('DOMContentLoaded', function() {
         if (summaryVisible) loadStats();
     }, 30000);
 });
+// Load stats
+function loadStats(filters) {
+    let url = API_URL + '/get_stats.php';
+    if (filters) {
+        url += '?' + new URLSearchParams(filters).toString();
+    }
+
+    fetch(url, { method: 'GET', headers: getAuthHeader() })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            displayStats(data.stats);
+        } else {
+            console.error('Stats error:', data.message);
+        }
+    })
+    .catch(err => console.error('Stats fetch error:', err));
+}
+
+// Display stats
+function displayStats(stats) {
+    document.getElementById('totalUsers').textContent = stats.total_users || 0;
+    document.getElementById('totalRequests').textContent = stats.total_requests || 0;
+    document.getElementById('highSeverity').textContent = stats.high_severity || 0;
+    document.getElementById('mediumSeverity').textContent = stats.medium_severity || 0;
+    document.getElementById('lowSeverity').textContent = stats.low_severity || 0;
+    document.getElementById('foodRequests').textContent = stats.food_requests || 0;
+    document.getElementById('waterRequests').textContent = stats.water_requests || 0;
+    document.getElementById('medicineRequests').textContent = stats.medicine_requests || 0;
+    document.getElementById('shelterRequests').textContent = stats.shelter_requests || 0;
+}
