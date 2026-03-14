@@ -149,3 +149,24 @@
             <button onclick="closeUserPopup()" class="btncc">Close</button>
         </div>
     </div>
+ <!-- Delete Confirm Popup -->
+    <div id="deletePopup" class="popup">
+        <div class="popupcontent popup-small">
+            <h2>Confirm Delete</h2>
+            <span class="close" onclick="closeDeletePopup()">&times;</span>
+            <p style="margin:15px 0;">Are you sure you want to delete this user?</p>
+            <p><strong id="deleteUserName"></strong></p>
+            <div class="warning">⚠️ This will also delete all their relief requests and cannot be undone!</div>
+            <div id="deleteError" class="errormsg" style="display:none;"></div>
+            <div class="form-buttons">
+                <button onclick="closeDeletePopup()" class="btncc">Cancel</button>
+                <button onclick="confirmDelete()" class="btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    
+   
+    <script src="admin.js"></script>
+</body>
+</html>
