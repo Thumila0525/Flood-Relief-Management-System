@@ -125,3 +125,41 @@ function showNoRequests() {
     document.getElementById('requestsList').innerHTML = '';
     document.getElementById('noRequests').style.display = 'block';
 }
+
+// Show add form
+function showAddForm() {
+    editingRequestId = null;
+    document.getElementById('popupTitle').textContent = 'New Relief Request';
+    document.getElementById('requestForm').reset();
+    clearMessages();
+    document.getElementById('requestPopup').classList.add('show');
+}
+
+// Edit request
+function editRequest(id) {
+    let request = null;
+    for (let i = 0; i < allRequests.length; i++) {
+        if (allRequests[i].id == id) {
+            request = allRequests[i];
+            break;
+        }
+    }
+    if (!request) return;
+
+    editingRequestId = id;
+    document.getElementById('popupTitle').textContent = 'Edit Relief Request';
+    document.getElementById('requestId').value = request.id;
+    document.getElementById('reliefType').value = request.relief_type;
+    document.getElementById('severity').value = request.severity_level;
+    document.getElementById('district').value = request.district;
+    document.getElementById('dsDivision').value = request.divisional_secretariat;
+    document.getElementById('gnDivision').value = request.gn_division;
+    document.getElementById('contactPerson').value = request.contact_person;
+    document.getElementById('contactNumber').value = request.contact_number;
+    document.getElementById('houseAddress').value = request.address;
+    document.getElementById('familyMembers').value = request.family_members;
+    document.getElementById('description').value = request.description || '';
+
+    clearMessages();
+    document.getElementById('requestPopup').classList.add('show');
+}
