@@ -59,6 +59,21 @@ function getAuthUser($pdo) {
     }
 
 
+    // Get user from DB
+    $stmt = $pdo->prepare("SELECT id, full_name, email, role FROM users WHERE id = ?");
+    $stmt->execute([$data['user_id']]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        http_response_code(401);
+        echo json_encode(["success" => false, "message" => "User not found"]);
+        exit;
+    }
+
+    return $user;
+}
+
+
 
 
 ?>
