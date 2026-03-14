@@ -165,3 +165,26 @@ function getAuthHeader() {
         'Authorization': 'Bearer ' + token
     };
 }
+
+
+// Show error message
+function showError(element, message) {
+    element.textContent = message;
+    element.style.display = 'block';
+    element.style.backgroundColor = '#f8d7da';
+    element.style.color = '#721c24';
+    element.style.padding = '12px';
+    element.style.borderRadius = '5px';
+    element.style.marginBottom = '15px';
+}
+
+// Show success message
+function showSuccess(element, message) {
+    element.textContent = message;
+    element.style.display = 'block';
+    element.style.backgroundColor = '#d4edda';
+    element.style.color = '#155724';
+    element.style.padding = '12px';
+    element.style.borderRadius = '5px';
+    element.style.marginBottom = '15px';
+}
