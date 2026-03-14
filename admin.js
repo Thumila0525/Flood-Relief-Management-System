@@ -137,3 +137,20 @@ function resetFilters() {
     document.getElementById('filterType').value = '';
     loadStats();
 }
+// Load users
+function loadUsers() {
+    fetch(API_URL + '/get_users.php', {
+        method: 'GET',
+        headers: getAuthHeader()
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            allUsers = data.users || [];
+            displayUsers(allUsers);
+        } else {
+            showNoUsers();
+        }
+    })
+    .catch(() => showNoUsers());
+}
