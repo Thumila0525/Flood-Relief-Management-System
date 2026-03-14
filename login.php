@@ -24,3 +24,19 @@ if (!$user || !password_verify($password, $user['password'])) {
     echo json_encode(["success" => false, "message" => "Invalid email or password"]);
     exit;
 }
+
+// Create simple token
+$tokenData = json_encode(['user_id' => $user['id'], 'time' => time()]);
+$token = base64_encode($tokenData);
+
+echo json_encode([
+    "success" => true,
+    "token" => $token,
+    "user" => [
+        "id" => $user['id'],
+        "full_name" => $user['full_name'],
+        "email" => $user['email'],
+        "role" => $user['role']
+    ]
+]);
+?>
