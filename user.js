@@ -60,3 +60,37 @@ function handleAdminLogin(e) {
         document.getElementById('adminPassword').value = '';
     }
 }
+
+// Login
+function handleLogin(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('error');
+
+    errorDiv.textContent = '';
+    errorDiv.style.display = 'none';
+
+    fetch(API_URL + '/login.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('token', data.token);
+
+            if (data.user.role === 'admin') {
+                window.location.href = 'admin.html';
+            } else {
+                window.location.href = 'dashbord.html';
+            }
+        } else {
+            showError(errorDiv, data.message || 'Login failed');
+        }
+    })
+    .catch(() => showError(errorDiv, 'Connection error. Please try again.'));
+}
