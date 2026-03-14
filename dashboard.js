@@ -183,3 +183,54 @@ function deleteRequest(id) {
     })
     .catch(() => alert('Error deleting request'));
 }
+
+// Submit form 
+function submitRequest(e) {
+    e.preventDefault();
+
+    const formData = {
+        relief_type: document.getElementById('reliefType').value,
+        severity_level: document.getElementById('severity').value,
+        district: document.getElementById('district').value,
+        divisional_secretariat: document.getElementById('dsDivision').value,
+        gn_division: document.getElementById('gnDivision').value,
+        contact_person: document.getElementById('contactPerson').value,
+        contact_number: document.getElementById('contactNumber').value,
+        address: document.getElementById('houseAddress').value,
+        family_members: parseInt(document.getElementById('familyMembers').value),
+        description: document.getElementById('description').value
+    };
+
+    const errorDiv = document.getElementById('formError');
+    const successDiv = document.getElementById('formSuccess');
+    clearMessages();
+
+    let url, method;
+    if (editingRequestId) {
+        url = API_URL + '/update_request.php';
+        method = 'PUT';
+        formData.id = editingRequestId;
+    } else {
+        url = API_URL + '/create_request.php';
+        method = 'POST';
+    }
+
+    fetch(url, {
+        method: method,
+        headers: getAuthHeader(),
+        body: JSON.stringify(formData)
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess(successDiv, 'Request saved successfully!');
+            setTimeout(() => {
+                closePopup();
+                loadRequests();
+            }, 1000);
+        } else {
+            showError(errorDiv, data.message || 'Failed to save request');
+        }
+    })
+    .catch(() => showError(errorDiv, 'Connection error. Please try again.'));
+}
