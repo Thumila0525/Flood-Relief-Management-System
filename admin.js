@@ -306,4 +306,8 @@ function closeDeletePopup() {
     document.getElementById('deletePopup').classList.remove('show');
     deleteUserId = null;
 }
-
+// Close popups when clicking outside
+window.onclick = function(event) {
+    if (event.target === document.getElementById('userPopup')) closeUserPopup();
+    if (event.target === document.getElementById('deletePopup')) closeDeletePopup();
+}
