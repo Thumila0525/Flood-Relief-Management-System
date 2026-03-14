@@ -204,4 +204,21 @@ function searchUsers(e) {
     );
     displayUsers(filtered);
 }
+// View user details
+function viewUser(userId) {
+    fetch(API_URL + '/get_user_details.php?user_id=' + userId, {
+        method: 'GET',
+        headers: getAuthHeader()
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            displayUserDetails(data.user, data.requests);
+        } else {
+            alert(data.message || 'Failed to load user details');
+        }
+    })
+    .catch(() => alert('Error loading user details'));
+}
+
 
