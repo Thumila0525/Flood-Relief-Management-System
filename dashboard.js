@@ -63,3 +63,21 @@ document.addEventListener('DOMContentLoaded', function() {
     loadRequests();
     document.getElementById('requestForm').addEventListener('submit', submitRequest);
 });
+
+// Load requests
+function loadRequests() {
+    fetch(API_URL + '/get_user_requests.php', {
+        method: 'GET',
+        headers: getAuthHeader()
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            allRequests = data.requests || [];
+            displayRequests();
+        } else {
+            showNoRequests();
+        }
+    })
+    .catch(() => showNoRequests());
+}
