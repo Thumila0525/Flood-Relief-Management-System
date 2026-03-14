@@ -163,3 +163,23 @@ function editRequest(id) {
     clearMessages();
     document.getElementById('requestPopup').classList.add('show');
 }
+
+// Delete request
+function deleteRequest(id) {
+    if (!confirm('Are you sure you want to delete this request?')) return;
+
+    fetch(API_URL + '/delete_request.php', {
+        method: 'DELETE',
+        headers: getAuthHeader(),
+        body: JSON.stringify({ id: id })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            loadRequests();
+        } else {
+            alert(data.message || 'Failed to delete request');
+        }
+    })
+    .catch(() => alert('Error deleting request'));
+}
