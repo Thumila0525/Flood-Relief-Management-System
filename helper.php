@@ -84,5 +84,9 @@ function requireAdmin($pdo) {
     return $user;
 }
 
+function addCondition($whereSQL, $condition) {
+    return $whereSQL ? "$whereSQL AND $condition" : "WHERE $condition";
+}
+
 
 ?>
