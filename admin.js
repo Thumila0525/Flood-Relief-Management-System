@@ -221,4 +221,47 @@ function viewUser(userId) {
     .catch(() => alert('Error loading user details'));
 }
 
+// Display user details in popup
+function displayUserDetails(user, requests) {
+    let html = `
+        <div class="detail-section">
+            <h3>Personal Information</h3>
+            <div class="detail-row"><div class="detail-label">Name:</div><div class="detail-value">${user.full_name}</div></div>
+            <div class="detail-row"><div class="detail-label">Email:</div><div class="detail-value">${user.email}</div></div>
+            <div class="detail-row"><div class="detail-label">Phone:</div><div class="detail-value">${user.phone}</div></div>
+            <div class="detail-row"><div class="detail-label">NIC:</div><div class="detail-value">${user.nic}</div></div>
+            <div class="detail-row"><div class="detail-label">Address:</div><div class="detail-value">${user.address}</div></div>
+        </div>
+        <div class="detail-section">
+            <h3>Relief Requests (${requests.length})</h3>
+    `;
+
+    if (requests.length > 0) {
+        for (let i = 0; i < requests.length; i++) {
+            const req = requests[i];
+            html += `
+                <div class="request-card">
+                    <h3>${req.relief_type}</h3>
+                    <span class="badge ${req.severity_level.toLowerCase()}">${req.severity_level}</span>
+                    <p><strong>District:</strong> ${req.district}</p>
+                    <p><strong>DS Division:</strong> ${req.divisional_secretariat}</p>
+                    <p><strong>GN Division:</strong> ${req.gn_division}</p>
+                    <p><strong>Contact:</strong> ${req.contact_person} (${req.contact_number})</p>
+                    <p><strong>Family Members:</strong> ${req.family_members}</p>
+                    ${req.description ? '<p><strong>Description:</strong> ' + req.description + '</p>' : ''}
+                </div>
+            `;
+        }
+    } else {
+        html += '<p style="text-align:center; color:#666;">No requests submitted yet.</p>';
+    }
+
+    html += '</div>';
+    document.getElementById('userDetails').innerHTML = html;
+    document.getElementById('userPopup').classList.add('show');
+}
+
+function closeUserPopup() {
+    document.getElementById('userPopup').classList.remove('show');
+}
 
