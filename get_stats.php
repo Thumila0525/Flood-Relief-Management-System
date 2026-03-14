@@ -23,5 +23,13 @@ if ($relief_type) {
 
 $whereSQL = count($where) ? "WHERE " . implode(" AND ", $where) : "";
 
+// Total users
+$totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'user'")->fetchColumn();
+
+// Total requests
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests $whereSQL");
+$stmt->execute($params);
+$totalRequests = $stmt->fetchColumn();
+
 
 ?>
