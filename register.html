@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Flood Relief Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main">
+        <div class="card">
+            <div class="logo">
+                <h1>Flood Relief Management System</h1>
+            </div>
+
+            <!-- Registration form for new users -->
+             <form id="registerForm">
+                <h2 style="margin-bottom:20px;">Sign Up</h2>
+
+                <div class="form">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form">
+                    <label>Email</label>
+                    <input type="email" id="emailReg" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form">
+                    <label>Phone Number</label>
+                    <input type="text" id="phone" placeholder="07XXXXXXXX" required>
+                </div>
+
+                <div class="form">
+                    <label>NIC</label>
+                    <input type="text" id="nic" placeholder="XXXXXXXXXXX" required>
+                </div>
+
+                <div class="form">
+                    <label>Address</label>
+                    <textarea id="address" rows="3" placeholder="Enter your address" required></textarea>
+                </div>
+
+                <div class="form">
+                    <label>Password</label>
+                    <input type="password" id="passwordReg" placeholder="Create a password" required>
+                </div>
+
+                <div class="form">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                </div>
+
+                <div id="error" class="errormsg" style="display:none;"></div>
+                <div id="success" class="successmsg" style="display:none;"></div>
+
+                <button type="submit" class="btn">Submit</button>
+
+                 <p style="text-align:center; margin-top:20px; font-size:14px;">
+                    Already have an account? <a href="login.html">Sign In</a>
+                </p>
+        </div>
+    </div>
+     <script src="user.js"></script>
+</body>
+</html>
