@@ -22,3 +22,121 @@
             <button class="tab active" onclick="showTab('summary')">Summary</button>
             <button class="tab" onclick="showTab('users')">Users</button>
         </div>
+ <!-- Summary Tab -->
+        <div id="summaryTab" class="tab-content" style="display:block;">
+            <h2 style="margin-bottom:20px;">System Summary</h2>
+
+            <div class="filter-box">
+                <h3 style="margin-top:0;">Filter by District &amp; Relief Type</h3>
+                <div class="filter-row">
+                    <select id="filterDistrict">
+                        <option value="">All Districts</option>
+                        <option value="Ampara">Ampara</option>
+                        <option value="Anuradhapura">Anuradhapura</option>
+                        <option value="Badulla">Badulla</option>
+                        <option value="Batticaloa">Batticaloa</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Galle">Galle</option>
+                        <option value="Gampaha">Gampaha</option>
+                        <option value="Hambanthota">Hambanthota</option>
+                        <option value="Jaffna">Jaffna</option>
+                        <option value="Kalutara">Kalutara</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Kegalle">Kegalle</option>
+                        <option value="Kilinochchi">Kilinochchi</option>
+                        <option value="Kurunegala">Kurunegala</option>
+                        <option value="Mannar">Mannar</option>
+                        <option value="Matale">Matale</option>
+                        <option value="Matara">Matara</option>
+                        <option value="Monaragala">Monaragala</option>
+                        <option value="Mulathiv">Mulathiv</option>
+                        <option value="Nuwalaeliya">Nuwalaeliya</option>
+                        <option value="Polonnaruwa">Polonnaruwa</option>
+                        <option value="Puthtalam">Puthtalam</option>
+                        <option value="Ratnapura">Ratnapura</option>
+                        <option value="Trincomalee">Trincomalee</option>
+                        <option value="Vavuniya">Vavuniya</option>
+                    </select>
+
+                    <select id="filterType">
+                        <option value="">All Types</option>
+                        <option value="Food">Food</option>
+                        <option value="Water">Water</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Shelter">Shelter</option>
+                    </select>
+
+                    <button onclick="applyFilters()" class="btn" style="width:auto; margin:0;">Apply</button>
+                    <button onclick="resetFilters()" class="btncc" style="width:auto;">Reset</button>
+                </div>
+            </div>
+
+            <div class="admingrid">
+                <div class="data">
+                    <h3>Total Users</h3>
+                    <p id="totalUsers" class="number">0</p>
+                </div>
+                <div class="data">
+                    <h3>Total Requests</h3>
+                    <p id="totalRequests" class="number">0</p>
+                </div>
+                <div class="data red">
+                    <h3>High Severity</h3>
+                    <p id="highSeverity" class="number">0</p>
+                </div>
+                <div class="data yellow">
+                    <h3>Medium Severity</h3>
+                    <p id="mediumSeverity" class="number">0</p>
+                </div>
+                <div class="data green">
+                    <h3>Low Severity</h3>
+                    <p id="lowSeverity" class="number">0</p>
+                </div>
+            </div>
+
+            <h3>Relief Type Breakdown</h3>
+            <div class="admingrid">
+                <div class="data">
+                    <h3>🍚 Food</h3>
+                    <p id="foodRequests" class="number">0</p>
+                </div>
+                <div class="data">
+                    <h3>💧 Water</h3>
+                    <p id="waterRequests" class="number">0</p>
+                </div>
+                <div class="data">
+                    <h3>💊 Medicine</h3>
+                    <p id="medicineRequests" class="number">0</p>
+                </div>
+                <div class="data">
+                    <h3>🏠 Shelter</h3>
+                    <p id="shelterRequests" class="number">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="usersTab" class="tab-content" style="display:none;">
+            <h2 style="margin-bottom:20px;">Registered Users</h2>
+
+            <input type="text" id="searchUsers" placeholder="Search by name, email, NIC or phone..." class="search-box">
+
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>NIC</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody"></tbody>
+            </table>
+
+            <div id="noUsers" class="no-data" style="display:none;">
+                <p>No users found.</p>
+            </div>
+        </div>
+
+    </div>
