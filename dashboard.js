@@ -234,3 +234,26 @@ function submitRequest(e) {
     })
     .catch(() => showError(errorDiv, 'Connection error. Please try again.'));
 }
+
+
+// Close popup
+function closePopup() {
+    document.getElementById('requestPopup').classList.remove('show');
+    editingRequestId = null;
+}
+
+// Clear messages
+function clearMessages() {
+    const errorDiv = document.getElementById('formError');
+    const successDiv = document.getElementById('formSuccess');
+    errorDiv.textContent = '';
+    errorDiv.style.display = 'none';
+    successDiv.textContent = '';
+    successDiv.style.display = 'none';
+}
+
+// Close popup when clicking outside
+window.onclick = function(event) {
+    const popup = document.getElementById('requestPopup');
+    if (event.target === popup) closePopup();
+}
