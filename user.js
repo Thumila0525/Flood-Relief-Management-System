@@ -94,3 +94,47 @@ function handleLogin(e) {
     })
     .catch(() => showError(errorDiv, 'Connection error. Please try again.'));
 }
+
+
+// Register
+function handleRegister(e) {
+    e.preventDefault();
+
+    const full_name = document.getElementById('fullName').value;
+    const email = document.getElementById('emailReg').value;
+    const phone = document.getElementById('phone').value;
+    const nic = document.getElementById('nic').value;
+    const address = document.getElementById('address').value;
+    const password = document.getElementById('passwordReg').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    const errorDiv = document.getElementById('error');
+    const successDiv = document.getElementById('success');
+
+    errorDiv.textContent = '';
+    errorDiv.style.display = 'none';
+    successDiv.textContent = '';
+    successDiv.style.display = 'none';
+
+    if (password !== confirmPassword) {
+        showError(errorDiv, 'Passwords do not match');
+        return;
+    }
+
+    fetch(API_URL + '/register.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ full_name, email, phone, nic, address, password })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            showSuccess(successDiv, 'Registration successful! Redirecting to login...');
+            document.getElementById('registerForm').reset();
+            setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+        } else {
+            showError(errorDiv, data.message || 'Registration failed');
+        }
+    })
+    .catch(() => showError(errorDiv, 'Connection error. Please try again.'));
+}
