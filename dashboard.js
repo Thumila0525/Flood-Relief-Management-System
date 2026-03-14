@@ -44,3 +44,22 @@ function showSuccess(element, message) {
     element.style.borderRadius = '5px';
     element.style.marginBottom = '15px';
 }
+
+let currentUser = null;
+let allRequests = [];
+let editingRequestId = null;
+
+// Page load
+document.addEventListener('DOMContentLoaded', function() {
+    currentUser = checkAuth();
+    if (!currentUser) return;
+
+    if (currentUser.role === 'admin') {
+        window.location.href = 'admin.html';
+        return;
+    }
+
+    document.getElementById('userName').textContent = 'Welcome, ' + currentUser.full_name;
+    loadRequests();
+    document.getElementById('requestForm').addEventListener('submit', submitRequest);
+});
