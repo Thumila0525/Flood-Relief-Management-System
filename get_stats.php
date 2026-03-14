@@ -31,5 +31,18 @@ $stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests $whereSQL");
 $stmt->execute($params);
 $totalRequests = $stmt->fetchColumn();
 
+// Severity counts
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests " . addCondition($whereSQL, "severity_level = 'High'"));
+$stmt->execute($params);
+$highSeverity = $stmt->fetchColumn();
+
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests " . addCondition($whereSQL, "severity_level = 'Medium'"));
+$stmt->execute($params);
+$mediumSeverity = $stmt->fetchColumn();
+
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests " . addCondition($whereSQL, "severity_level = 'Low'"));
+$stmt->execute($params);
+$lowSeverity = $stmt->fetchColumn();
+
 
 ?>
