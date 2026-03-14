@@ -264,4 +264,46 @@ function displayUserDetails(user, requests) {
 function closeUserPopup() {
     document.getElementById('userPopup').classList.remove('show');
 }
+// Open delete popup
+function openDeletePopup(userId, userName) {
+    deleteUserId = userId;
+    document.getElementById('deleteUserName').textContent = userName;
+    const errorDiv = document.getElementById('deleteError');
+    errorDiv.textContent = '';
+    errorDiv.style.display = 'none';
+    document.getElementById('deletePopup').classList.add('show');
+}
+
+// Confirm delete user
+function confirmDelete() {
+    if (!deleteUserId) return;
+
+    fetch(API_URL + '/delete_user.php', {
+        method: 'DELETE',
+        headers: getAuthHeader(),
+        body: JSON.stringify({ user_id: deleteUserId })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            closeDeletePopup();
+            loadUsers();
+            loadStats();
+        } else {
+            const errorDiv = document.getElementById('deleteError');
+            errorDiv.textContent = data.message || 'Failed to delete user';
+            errorDiv.style.display = 'block';
+            errorDiv.style.backgroundColor = '#f8d7da';
+            errorDiv.style.color = '#721c24';
+            errorDiv.style.padding = '10px';
+            errorDiv.style.borderRadius = '5px';
+        }
+    })
+    .catch(() => alert('Error deleting user'));
+}
+
+function closeDeletePopup() {
+    document.getElementById('deletePopup').classList.remove('show');
+    deleteUserId = null;
+}
 
