@@ -154,3 +154,54 @@ function loadUsers() {
     })
     .catch(() => showNoUsers());
 }
+// Display users in table
+function displayUsers(users) {
+    const tbody = document.getElementById('usersTableBody');
+    const noUsersDiv = document.getElementById('noUsers');
+    const table = document.getElementById('usersTable');
+
+    if (users.length === 0) {
+        table.style.display = 'none';
+        noUsersDiv.style.display = 'block';
+        return;
+    }
+
+    table.style.display = 'table';
+    noUsersDiv.style.display = 'none';
+
+    let html = '';
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        html += `
+            <tr>
+                <td>${user.full_name}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+                <td>${user.nic}</td>
+                <td>
+                    <button onclick="viewUser(${user.id})" class="btn" style="width:auto; margin:2px;">View</button>
+                    <button onclick="openDeletePopup(${user.id}, '${user.full_name}')" class="btn-danger" style="width:auto; margin:2px;">Delete</button>
+                </td>
+            </tr>
+        `;
+    }
+    tbody.innerHTML = html;
+}
+
+function showNoUsers() {
+    document.getElementById('usersTable').style.display = 'none';
+    document.getElementById('noUsers').style.display = 'block';
+}
+
+// Search users
+function searchUsers(e) {
+    const search = e.target.value.toLowerCase();
+    const filtered = allUsers.filter(u =>
+        u.full_name.toLowerCase().includes(search) ||
+        u.email.toLowerCase().includes(search) ||
+        u.nic.toLowerCase().includes(search) ||
+        u.phone.includes(search)
+    );
+    displayUsers(filtered);
+}
+
