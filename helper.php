@@ -73,7 +73,16 @@ function getAuthUser($pdo) {
     return $user;
 }
 
-
+// Check admin
+function requireAdmin($pdo) {
+    $user = getAuthUser($pdo);
+    if ($user['role'] !== 'admin') {
+        http_response_code(403);
+        echo json_encode(["success" => false, "message" => "Admin access required"]);
+        exit;
+    }
+    return $user;
+}
 
 
 ?>
