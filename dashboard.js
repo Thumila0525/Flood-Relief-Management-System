@@ -81,3 +81,47 @@ function loadRequests() {
     })
     .catch(() => showNoRequests());
 }
+
+// Display requests 
+function displayRequests() {
+    const container = document.getElementById('requestsList');
+    const noRequestsDiv = document.getElementById('noRequests');
+
+    if (allRequests.length === 0) {
+        container.innerHTML = '';
+        noRequestsDiv.style.display = 'block';
+        return;
+    }
+
+    noRequestsDiv.style.display = 'none';
+
+    let html = '<table><thead><tr><th>Type</th><th>Severity</th><th>District</th><th>DS Division</th><th>GN Division</th><th>Contact</th><th>Phone</th><th>Family</th><th>Actions</th></tr></thead><tbody>';
+
+    for (let i = 0; i < allRequests.length; i++) {
+        const req = allRequests[i];
+        html += `
+            <tr>
+                <td>${req.relief_type}</td>
+                <td><span class="badge ${req.severity_level.toLowerCase()}">${req.severity_level}</span></td>
+                <td>${req.district}</td>
+                <td>${req.divisional_secretariat}</td>
+                <td>${req.gn_division}</td>
+                <td>${req.contact_person}</td>
+                <td>${req.contact_number}</td>
+                <td>${req.family_members}</td>
+                <td>
+                    <button onclick="editRequest(${req.id})" class="btn" style="width:auto; margin:2px;">Edit</button>
+                    <button onclick="deleteRequest(${req.id})" class="btn-danger" style="width:auto; margin:2px;">Delete</button>
+                </td>
+            </tr>
+        `;
+    }
+
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+function showNoRequests() {
+    document.getElementById('requestsList').innerHTML = '';
+    document.getElementById('noRequests').style.display = 'block';
+}
