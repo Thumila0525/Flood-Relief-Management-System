@@ -26,3 +26,9 @@ function showAdminLogin() {
     err.textContent = '';
     err.style.display = 'none';
 }
+
+// Show normal user login form
+function showUserLogin() {
+    document.getElementById('adminLoginForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+}
