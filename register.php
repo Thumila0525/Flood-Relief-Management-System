@@ -21,5 +21,21 @@ if (!$full_name || !$email || !$phone || !$nic || !$address || !$password) {
     exit;
 }
 
+// Check email exists
+$stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->execute([$email]);
+if ($stmt->fetch()) {
+    echo json_encode(["success" => false, "message" => "Email already registered"]);
+    exit;
+}
+
+// Check NIC exists
+$stmt = $pdo->prepare("SELECT id FROM users WHERE nic = ?");
+$stmt->execute([$nic]);
+if ($stmt->fetch()) {
+    echo json_encode(["success" => false, "message" => "NIC already registered"]);
+    exit;
+}
+
 
 ?>
