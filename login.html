@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Flood Relief Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+            <div class="logo">
+                <h1> Flood Relief</h1>
+                <h3 style="border:none; color:#555; font-weight:normal; margin-top:5px;">Management System</h3>
+            </div>
+            
+            <form id="loginForm">
+                <h2 style="margin-bottom:20px;">Sign In</h2>
+
+                <div class="form">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <div id="error" class="errormsg" style="display:none;"></div>
+
+                <button type="submit" class="btn">Sign In</button>
+
+                <p style="text-align:center; margin-top:20px; font-size:14px;">
+                    Don't have an account? <a href="register.html">Sign Up</a>
+                </p>
+
+                <hr style="margin:20px 0; border:none; border-top:1px solid #eee;">
+
+                <button type="button" onclick="showAdminLogin()" class="btn" style="background:#2c3e50; margin-top:0;">
+                    🔐 Admin Login
+                </button>
+            </form>
+
+            <!--Admin login section -->
+             <form id="adminLoginForm" style="display:none;" onsubmit="handleAdminLogin(event)">
+                <h2 style="margin-bottom:20px;">⚙️ Admin Access</h2>
+
+                <div class="form">
+                    <label>Admin Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                </div>
+
+                <div id="adminError" class="errormsg" style="display:none;"></div>
+
+                <button type="submit" class="btn" style="background:#2c3e50; margin-top:0;">Enter Admin Panel</button>
+
+                <p style="text-align:center; margin-top:15px; font-size:14px;">
+                    <a href="#" onclick="showUserLogin(); return false;">← Back to User Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+        <script src="user.js"></script>
+</body>
+</html>
