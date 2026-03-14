@@ -42,4 +42,6 @@ $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, nic, address, password) VALUES (?, ?, ?, ?, ?, ?)");
 $stmt->execute([$full_name, $email, $phone, $nic, $address, $hashedPassword]);
 
+echo json_encode(["success" => true, "message" => "Registration successful"]);
+
 ?>
