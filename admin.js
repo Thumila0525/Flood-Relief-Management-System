@@ -45,3 +45,27 @@ function showSuccess(element, message) {
     element.style.marginBottom = '15px';
 }
 
+// ---- End Shared Functions ----
+
+let currentUser = null;
+let allUsers = [];
+let deleteUserId = null;
+
+// Switch tabs
+function showTab(tabName) {
+    document.getElementById('summaryTab').style.display = 'none';
+    document.getElementById('usersTab').style.display = 'none';
+
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => t.classList.remove('active'));
+
+    if (tabName === 'summary') {
+        document.getElementById('summaryTab').style.display = 'block';
+        tabs[0].classList.add('active');
+        loadStats();  // always reload fresh
+    } else if (tabName === 'users') {
+        document.getElementById('usersTab').style.display = 'block';
+        tabs[1].classList.add('active');
+        loadUsers();  // always reload fresh
+    }
+}
