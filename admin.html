@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Flood Relief Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>⛑️ Flood Relief Admin</h1>
+        <div>
+            <span id="adminName"></span>
+            <button onclick="logout()" class="btnsmall">Logout</button>
+        </div>
+    </div>
+
+    <div class="dashbord">
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('summary')">Summary</button>
+            <button class="tab" onclick="showTab('users')">Users</button>
+        </div>
