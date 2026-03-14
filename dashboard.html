@@ -93,6 +93,41 @@
                         <option value="Vavuniya">Vavuniya</option>
                     </select>
                 </div>
+
+                <h3>Household Details</h3>
+
+                <div class="form">
+                    <label>Contact Person Name</label>
+                    <input type="text" id="contactPerson" required>
+                </div>
+
+                <div class="form">
+                    <label>Contact Number</label>
+                    <input type="text" id="contactNumber" required>
+                </div>
+
+                <div class="form">
+                    <label>Address</label>
+                    <textarea id="houseAddress" rows="3" required></textarea>
+                </div>
+
+                <div class="form">
+                    <label>Number of Family Members</label>
+                    <input type="number" id="familyMembers" min="1" required>
+                </div>
+
+                <div class="form">
+                    <label>Special Requirements</label>
+                    <textarea id="description" rows="3"></textarea>
+                </div>
+
+                <div id="formError" class="errormsg" style="display:none;"></div>
+                <div id="formSuccess" class="successmsg" style="display:none;"></div>
+
+                <div class="formbuttons">
+                    <button type="button" onclick="closePopup()" class="btncc">Cancel</button>
+                    <button type="submit" class="btn" style="width:auto;">Submit</button>
+                </div>
   
             </form>
 
