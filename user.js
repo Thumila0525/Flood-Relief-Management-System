@@ -16,3 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
         registerForm.addEventListener('submit', handleRegister);
     }
 });
+
+// Show admin login form
+function showAdminLogin() {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('adminLoginForm').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    const err = document.getElementById('adminError');
+    err.textContent = '';
+    err.style.display = 'none';
+}
