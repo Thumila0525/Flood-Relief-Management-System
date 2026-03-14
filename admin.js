@@ -69,3 +69,24 @@ function showTab(tabName) {
         loadUsers();  // always reload fresh
     }
 }
+// Page load
+document.addEventListener('DOMContentLoaded', function() {
+    currentUser = checkAuth();
+    if (!currentUser) return;
+
+    if (currentUser.role !== 'admin') {
+        window.location.href = 'dashbord.html';
+        return;
+    }
+
+    document.getElementById('adminName').textContent = 'Admin: ' + currentUser.full_name;
+    loadStats();
+    loadUsers();
+    document.getElementById('searchUsers').addEventListener('input', searchUsers);
+
+    // Auto-refresh stats every 30 seconds so new data always shows
+    setInterval(function() {
+        const summaryVisible = document.getElementById('summaryTab').style.display !== 'none';
+        if (summaryVisible) loadStats();
+    }, 30000);
+});
