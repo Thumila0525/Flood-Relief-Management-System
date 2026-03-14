@@ -44,5 +44,25 @@ $stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests " . addCondition($wh
 $stmt->execute($params);
 $lowSeverity = $stmt->fetchColumn();
 
+// Relief type counts
+$types = ['Food', 'Water', 'Medicine', 'Shelter'];
+$typeCounts = [];
+foreach ($types as $type) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM relief_requests " . addCondition($whereSQL, "relief_type = ?"));
+    $stmt->execute(array_merge($params, [$type]));
+    $typeCounts[strtolower($type) . '_requests'] = (int)$stmt->fetchColumn();
+}
+
+echo json_encode([
+    "success" => true,
+    "stats" => array_merge([
+        "total_users"     => (int)$totalUsers,
+        "total_requests"  => (int)$totalRequests,
+        "high_severity"   => (int)$highSeverity,
+        "medium_severity" => (int)$mediumSeverity,
+        "low_severity"    => (int)$lowSeverity,
+    ], $typeCounts)
+]);
+
 
 ?>
