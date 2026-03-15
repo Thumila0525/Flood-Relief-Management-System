@@ -182,3 +182,26 @@ h3 {
     color: #ddd;
     font-size: 14px;
 }
+
+/* Dashboard */
+.dashbord {
+    margin: 30px 5%;
+}
+
+/* Header row */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header h2 { color: #333; }
+
+.header .btn { width: auto; margin: 0; }
+
+.formbuttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
