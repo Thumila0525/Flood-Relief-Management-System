@@ -77,3 +77,55 @@ h3 {
     border-bottom: 2px solid #eee;
     padding-bottom: 5px;
 }
+
+/* Buttons */
+.btn {
+    background-color: #667eea;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn:hover { background-color: #5a6fd6; }
+
+.btnsmall {
+    background-color: #667eea;
+    color: white;
+    padding: 7px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btnsmall:hover { background-color: #5a6fd6; }
+
+.btncc {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btncc:hover { background-color: #5a6268; }
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-danger:hover { background-color: #c82333; }
