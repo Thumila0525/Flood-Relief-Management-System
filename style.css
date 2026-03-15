@@ -349,3 +349,16 @@ table tr:hover { background-color: #f8f9fa; }
     margin-bottom: 20px;
     font-size: 14px;
 }
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge.high { background-color: #f8d7da; color: #721c24; }
+.badge.medium { background-color: #fff3cd; color: #856404; }
+.badge.low { background-color: #d4edda; color: #155724; }
