@@ -468,3 +468,13 @@ table tr:hover { background-color: #f8f9fa; }
 }
 
 .close:hover { color: #333; }
+
+/* media */
+@media (max-width: 768px) {
+    .filter-row { flex-direction: column; }
+    .admingrid { grid-template-columns: 1fr 1fr; }
+    .navbar { flex-direction: column; gap: 10px; text-align: center; }
+    .header { flex-direction: column; gap: 10px; align-items: flex-start; }
+    .detail-row { grid-template-columns: 1fr; }
+    table th, table td { padding: 8px 10px; font-size: 12px; }
+}
